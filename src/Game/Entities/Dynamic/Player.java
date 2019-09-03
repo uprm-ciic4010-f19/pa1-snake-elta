@@ -100,24 +100,41 @@ public class Player {
 
     }
 
-    public void render(Graphics g,Boolean[][] playeLocation){
-        Random r = new Random();
-        for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
-            for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-                g.setColor(Color.WHITE);
+	public void render(Graphics g, Boolean[][] playeLocation) {
+		Random rand = new Random();
+//      float red = 0;
+//      float gre = 0;
+//      float blu = 0;
+		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
+			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
+//          	red = rand.nextFloat();
+//          	gre = rand.nextFloat();
+//          	blu = rand.nextFloat();
+//            g.setColor(new Color(red, gre, blu));
+				if (playeLocation[i][j]) {
+					if ((i + j) % 2 == 0) {
+						g.setColor(new Color(0, 100, 0));
+					} else {
+						g.setColor(new Color(0, 200, 0));
+					}
+					g.fillRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),
+							handler.getWorld().GridPixelsize, handler.getWorld().GridPixelsize);
+				}
+				if (handler.getWorld().appleLocation[i][j]) {
+					g.setColor(handler.getWorld().apple.getColor());
+					g.fillRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),
+							handler.getWorld().GridPixelsize, handler.getWorld().GridPixelsize);
+				}
+//              if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
+//                  g.fillRect((i*handler.getWorld().GridPixelsize),
+//                          (j*handler.getWorld().GridPixelsize),
+//                          handler.getWorld().GridPixelsize,
+//                          handler.getWorld().GridPixelsize);
+//              }
 
-                if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
-                    g.fillRect((i*handler.getWorld().GridPixelsize),
-                            (j*handler.getWorld().GridPixelsize),
-                            handler.getWorld().GridPixelsize,
-                            handler.getWorld().GridPixelsize);
-                }
-
-            }
-        }
-
-
-    }
+			}
+		}
+	}
 
     public void Eat(){
         lenght++;
