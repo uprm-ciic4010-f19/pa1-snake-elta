@@ -47,8 +47,16 @@ public class WorldOne extends WorldBase{
 
     @Override
     public void render(Graphics g){
-        super.render(g);
-        player.render(g,playerLocation);
+		super.render(g);
+		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
+			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
+				g.setColor(new Color(128, 0, 128));
+				g.fillRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),
+						handler.getWorld().GridPixelsize, handler.getWorld().GridPixelsize);
+
+			}
+		}
+		player.render(g, playerLocation);
     }
 
 }
